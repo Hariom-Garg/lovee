@@ -1,24 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="refresh" content="3; url=love.html">
-    <title>Surprise for Disha ❤️</title>
+    <title>For My Love ❤️</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
             margin-top: 50px;
         }
+        h1 {
+            color: red;
+        }
+        p {
+            font-size: 18px;
+        }
+        #love-message, #love-img {
+            display: none;
+            margin-top: 20px;
+        }
+        #noBtn {
+            position: absolute;
+        }
         img {
             width: 300px;
             border-radius: 10px;
         }
     </style>
+    <script>
+        function showLove() {
+            document.getElementById("love-question").style.display = "none";
+            document.getElementById("love-message").style.display = "block";
+            document.getElementById("love-img").style.display = "block";
+        }
+
+        function moveNoButton() {
+            var x = Math.floor(Math.random() * (window.innerWidth - 100));
+            var y = Math.floor(Math.random() * (window.innerHeight - 50));
+            var noBtn = document.getElementById("noBtn");
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+        }
+    </script>
 </head>
 <body>
-    <h1>Endless Love for Disha ❤️</h1>
-    <p>Wait a moment... a special page is opening just for you! 😊</p>
-    <img src="IMG-20250211-WA0036.jpg" alt="Love Image">
-    <p>If you are not redirected, <a href="love.html">click here</a>.</p>
+    <h1>Endless Love for Dishaaaaa ❤️</h1>
+    <p>Wait a moment... something special is waiting just for you!!!</p>
+    
+    <div id="love-question">
+        <p><strong>Do you love me? 🥰</strong></p>
+        <button onclick="showLove()">Yes 💖</button>
+        <button id="noBtn" onmouseover="moveNoButton()">No 😜</button>
+    </div>
+
+    <div id="love-message">
+        <h2>I Love You Too!!! ❤️💖</h2>
+    </div>
+
+    <img id="love-img" src="myphoto.jpg" alt="My Photo">
 </body>
 </html>
