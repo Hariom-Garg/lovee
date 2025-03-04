@@ -64,6 +64,10 @@
             document.getElementById("love-question").style.display = "none";
             document.getElementById("random-message").style.display = "none";
             document.getElementById("love-message").style.display = "block";
+
+            // Play the music 🎵
+            var audio = document.getElementById("love-music");
+            audio.play();
         }
 
         function moveNoButton() {
@@ -101,5 +105,11 @@
         <h2 style="font-size: 32px; color: red;">I Love You Too!!! ❤️💖</h2>
         <img id="love-img" src="IMG-20250211-WA0036.jpg" alt="My Photo">
     </div>
+
+    <!-- Hidden music element -->
+    <audio id="love-music">
+        <source src="love-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
 </body>
 </html>
