@@ -54,6 +54,17 @@
             border: none;
             border-radius: 5px;
         }
+
+        img {
+            width: 300px;
+            opacity: 0;
+            animation: fadeInImage 1.5s forwards;
+        }
+
+        @keyframes fadeInImage {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -66,7 +77,7 @@
     </div>
 
     <div id="page2" class="hidden">
-        <audio id="song" autoplay controls>
+        <audio id="song" autoplay>
             <source src="Zaroor.mp3" type="audio/mp3">
         </audio>
         <h2>Wait a moment... Something special is waiting for you!</h2>
@@ -84,7 +95,7 @@
 
     <div id="page4" class="hidden">
         <h1 class="glowing-heart">❤️</h1>
-        <img src="11.jpg" alt="Us Together" width="300">
+        <img src="11.jpg" alt="Us Together">
         <p>I love you so much, Dishaa. You are my forever.</p>
     </div>
 
@@ -105,10 +116,9 @@
             if (index < images.length) {
                 let img = document.createElement('img');
                 img.src = images[index];
-                img.width = 300;
                 container.appendChild(img);
                 index++;
-                setTimeout(displayImages, 1500);
+                setTimeout(displayImages, 2000);
             }
         }
 
@@ -118,22 +128,19 @@
         }
 
         function showLove(isYes) {
-    if (isYes) {
-        document.getElementById('page3').classList.add('hidden');
-        document.getElementById('page4').classList.remove('hidden');
-        setTimeout(() => {
-            document.getElementById('heartbeatSound').play();
-        }, 500); // Small delay for effect
-    } else {
-        let randomIndex = Math.floor(Math.random() * noMessages.length);
-        document.getElementById('randomMessage').innerText = noMessages[randomIndex];
-        let noButton = document.getElementById('noButton');
-        noButton.style.position = 'absolute';
-        noButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-        noButton.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-    }
-}
-
+            if (isYes) {
+                document.getElementById('page3').classList.add('hidden');
+                document.getElementById('page4').classList.remove('hidden');
+                document.getElementById('heartbeatSound').play();
+            } else {
+                let randomIndex = Math.floor(Math.random() * noMessages.length);
+                document.getElementById('randomMessage').innerText = noMessages[randomIndex];
+                let noButton = document.getElementById('noButton');
+                noButton.style.position = 'absolute';
+                noButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+                noButton.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            }
+        }
     </script>
     
     <audio id="heartbeatSound">
