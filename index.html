@@ -1,115 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>For My Love ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endless Love for Dishaa</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
-            margin-top: 50px;
+            background-color: #ffe6e6;
         }
-        h1 {
-            color: red;
-            font-size: 36px;
-        }
-        p {
-            font-size: 22px;
-        }
-        #love-message {
+        .hidden {
             display: none;
-            margin-top: 30px;
         }
-        #noBtn {
+        .heart {
+            font-size: 100px;
+            color: red;
+        }
+        #finalHeart {
+            font-size: 150px;
+            color: red;
+        }
+        .floating {
             position: absolute;
-            font-size: 22px;
-            padding: 12px 20px;
+            animation: float 3s infinite alternate;
+        }
+        @keyframes float {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-20px); }
         }
         button {
-            font-size: 22px;
-            padding: 12px 20px;
-            margin: 10px;
-            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
             cursor: pointer;
-            border-radius: 10px;
-        }
-        button:hover {
-            opacity: 0.8;
-        }
-        #yesBtn {
-            background-color: green;
-            color: white;
-        }
-        #noBtn {
             background-color: red;
             color: white;
-        }
-        img {
-            width: 300px;
-            border-radius: 10px;
-            margin-top: 20px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #random-message {
-            font-style: italic;
-            color: blue;
-            font-size: 22px;
-            margin-top: 15px;
-            font-weight: bold;
+            border: none;
+            border-radius: 5px;
         }
     </style>
-    <script>
-        function showLove() {
-            document.getElementById("love-question").style.display = "none";
-            document.getElementById("random-message").style.display = "none";
-            document.getElementById("love-message").style.display = "block";
-
-            // Play the music 🎵
-            var audio = document.getElementById("love-music");
-            audio.play();
-        }
-
-        function moveNoButton() {
-            var x = Math.floor(Math.random() * (window.innerWidth - 150));
-            var y = Math.floor(Math.random() * (window.innerHeight - 70));
-            var noBtn = document.getElementById("noBtn");
-            noBtn.style.left = x + "px";
-            noBtn.style.top = y + "px";
-
-            // Random messages when clicking "No"
-            var messages = [
-                "If you want to go further, you have to click Yes! 😜",
-                "Accept my love and let's move forward! 💖",
-                "Are you sure? Because my love for you is unstoppable! 😘",
-                "No is not an option when it comes to love! 💕"
-            ];
-            var randomIndex = Math.floor(Math.random() * messages.length);
-            document.getElementById("random-message").innerText = messages[randomIndex];
-        }
-    </script>
 </head>
 <body>
-    <h1>Endless Love for Disha ❤️</h1>
-    <p>Wait a moment... something special is waiting for you!!!</p>
-    
-    <div id="love-question">
-        <p><strong>Do you love me? 🥰</strong></p>
-        <button id="yesBtn" onclick="showLove()">Yes 💖</button>
-        <button id="noBtn" onmouseover="moveNoButton()">No 😜</button>
+    <div id="page1">
+        <h1>My Dearest Dishaa,</h1>
+        <p>I am truly sorry for yesterday. It hurts me when you are sad, and I never want to be the reason behind it.</p>
+        <p>You are my world, and I can't imagine a day without your beautiful smile.</p>
+        <p>Can you please forgive me and let me make it up to you?</p>
+        <button onclick="nextPage()">Make Me Happy</button>
     </div>
 
-    <p id="random-message"></p>
-
-    <div id="love-message">
-        <h2 style="font-size: 32px; color: red;">I Love You Too!!! ❤️💖</h2>
-        <img id="love-img" src="IMG-20250211-WA0036.jpg" alt="My Photo">
+    <div id="page2" class="hidden">
+        <audio id="song" autoplay>
+            <source src="zaroor.mp3" type="audio/mp3">
+            Your browser does not support the audio tag.
+        </audio>
+        <h2>Wait a moment... Something special is waiting for you!</h2>
+        <div id="imageContainer"></div>
+        <button onclick="finalPage()">Are you ready for the most special part? 💕 Click to see what’s in my heart.</button>
     </div>
 
-    <!-- Hidden music element -->
-    <audio id="love-music">
-        <source src="Zaroor.mp3" type="audio/mpeg">
-        Your browser does not support the audio tag.
-    </audio>
+    <div id="page3" class="hidden">
+        <h1 class="heart">❤️</h1>
+        <p>Now, one last question...</p>
+        <p>Do you love me?</p>
+        <button onclick="showLove(true)">Yes</button>
+        <button id="noButton" onclick="showLove(false)">No</button>
+        <p id="randomMessage"></p>
+    </div>
+
+    <div id="page4" class="hidden">
+        <h1 id="finalHeart">❤️</h1>
+        <img src="us-together.jpg" alt="Us Together" width="300">
+        <p>I love you so much, Dishaa. I promise to always cherish, respect, and grow with you.</p>
+        <p>You are my forever and my eternity. Please never leave me, because I can't imagine a life without you.</p>
+    </div>
+
+    <script>
+        let images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg', 'img6.jpg', 'img7.jpg', 'img8.jpg', 'img9.jpg', 'img10.jpg', 'img11.jpg'];
+        let index = 0;
+        let noMessages = ["If you want to go further, you have to click yes!", "Accept my love to go further!", "You know deep down it's a YES!", "No is not an option, my love!"];
+
+        function nextPage() {
+            document.getElementById('page1').classList.add('hidden');
+            document.getElementById('page2').classList.remove('hidden');
+            displayImages();
+        }
+
+        function displayImages() {
+            let container = document.getElementById('imageContainer');
+            container.innerHTML = '';
+            if (index < images.length) {
+                let img = document.createElement('img');
+                img.src = images[index];
+                img.width = 300;
+                container.appendChild(img);
+                index++;
+                setTimeout(displayImages, 1500);
+            }
+        }
+
+        function finalPage() {
+            document.getElementById('page2').classList.add('hidden');
+            document.getElementById('page3').classList.remove('hidden');
+        }
+
+        function showLove(isYes) {
+            if (isYes) {
+                document.getElementById('page3').classList.add('hidden');
+                document.getElementById('page4').classList.remove('hidden');
+            } else {
+                let randomIndex = Math.floor(Math.random() * noMessages.length);
+                document.getElementById('randomMessage').innerText = noMessages[randomIndex];
+                let noButton = document.getElementById('noButton');
+                noButton.style.position = 'absolute';
+                noButton.style.left = Math.random() * window.innerWidth + 'px';
+                noButton.style.top = Math.random() * window.innerHeight + 'px';
+            }
+        }
+    </script>
 </body>
 </html>
