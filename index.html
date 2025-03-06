@@ -66,7 +66,7 @@
     </div>
 
     <div id="page2" class="hidden">
-        <audio id="song" autoplay>
+        <audio id="song" autoplay controls>
             <source src="Zaroor.mp3" type="audio/mp3">
         </audio>
         <h2>Wait a moment... Something special is waiting for you!</h2>
@@ -118,19 +118,22 @@
         }
 
         function showLove(isYes) {
-            if (isYes) {
-                document.getElementById('page3').classList.add('hidden');
-                document.getElementById('page4').classList.remove('hidden');
-                document.getElementById('heartbeatSound').play();
-            } else {
-                let randomIndex = Math.floor(Math.random() * noMessages.length);
-                document.getElementById('randomMessage').innerText = noMessages[randomIndex];
-                let noButton = document.getElementById('noButton');
-                noButton.style.position = 'absolute';
-                noButton.style.left = Math.random() * window.innerWidth + 'px';
-                noButton.style.top = Math.random() * window.innerHeight + 'px';
-            }
-        }
+    if (isYes) {
+        document.getElementById('page3').classList.add('hidden');
+        document.getElementById('page4').classList.remove('hidden');
+        setTimeout(() => {
+            document.getElementById('heartbeatSound').play();
+        }, 500); // Small delay for effect
+    } else {
+        let randomIndex = Math.floor(Math.random() * noMessages.length);
+        document.getElementById('randomMessage').innerText = noMessages[randomIndex];
+        let noButton = document.getElementById('noButton');
+        noButton.style.position = 'absolute';
+        noButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+        noButton.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+    }
+}
+
     </script>
     
     <audio id="heartbeatSound">
