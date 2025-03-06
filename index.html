@@ -56,10 +56,11 @@
         }
 
         img {
-            width: 300px;
+            width: 250px;
             opacity: 0;
+            display: block;
+            margin: 20px auto;
             animation: fadeInImage 1.5s forwards;
-            margin-top: 20px;
         }
 
         @keyframes fadeInImage {
@@ -72,6 +73,7 @@
             justify-content: center;
             align-items: center;
             height: 300px;
+            flex-direction: column;
         }
     </style>
 </head>
@@ -108,7 +110,7 @@
     </div>
 
     <script>
-        let images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg', 'img6.jpg', 'img7.jpg', 'img8.jpg', 'img9.jpg', 'img10.jpg', 'img12.jpg'];
+        let images = ['img1.jpg', 'im2.jpg', 'im3.jpg', 'img4.jpg', 'im5.jpg', 'img6.jpg', 'img7.jpg', '8.jpg', 'img9.jpg', 'im10.jpg', 'im12.jpg'];
         let index = 0;
         let noMessages = ["If you want to go further, you have to click yes!", "Accept my love to go further!", "You know deep down it's a YES!", "No is not an option, my love!"];
 
@@ -120,16 +122,16 @@
         }
 
         function displayImages() {
-    let container = document.getElementById('imageContainer');
-    container.innerHTML = '';
-    images.forEach(src => {
-        let img = document.createElement('img');
-        img.src = src;
-        img.style.opacity = '1';  // No animation, fully visible
-        container.appendChild(img);
-    });
-}
-
+            let container = document.getElementById('imageContainer');
+            container.innerHTML = '';
+            if (index < images.length) {
+                let img = document.createElement('img');
+                img.src = images[index];
+                container.appendChild(img);
+                index++;
+                setTimeout(displayImages, 2000);
+            }
+        }
 
         function finalPage() {
             document.getElementById('page2').classList.add('hidden');
