@@ -3,159 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Endless Love for Dishaa</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            background-color: #ffe6e6;
-            overflow-x: hidden;
-        }
-        .hidden { display: none; }
-        .heart { font-size: 100px; color: red; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
-        
-        .floating-heart {
-            position: absolute;
-            font-size: 30px;
-            color: red;
-            animation: floatHearts 4s infinite alternate;
-        }
-        @keyframes floatHearts {
-            from { transform: translateY(0px); }
-            to { transform: translateY(-50px); }
-        }
-        
-        .animated-text {
-            font-size: 24px;
-            animation: fadeIn 3s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .glowing-heart {
-            font-size: 150px;
-            color: red;
-            animation: glow 1.5s infinite alternate;
-        }
-        @keyframes glow {
-            from { text-shadow: 0 0 5px red; }
-            to { text-shadow: 0 0 20px red; }
-        }
-        
-        button {
-            padding: 15px 25px;
-            font-size: 24px;
-            cursor: pointer;
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 10px;
-        }
-
-        img {
-            width: 250px;
-            opacity: 0;
-            display: block;
-            margin: 20px auto;
-            animation: fadeInImage 1.5s forwards;
-        }
-
-        @keyframes fadeInImage {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        #imageContainer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 300px;
-            flex-direction: column;
-        }
-    </style>
+    <title>Our Wedding - Dishaa & [Your Name]</title>
+    <link rel="stylesheet" href="style.css"> <!-- External CSS -->
 </head>
 <body>
-    <div id="page1">
-        <h1 class="animated-text">My Dearest Dishaa,</h1>
-        <p class="animated-text">I am truly sorry for yesterday. It hurts me when you are sad.</p>
-        <p class="animated-text">You are my world, and I can't imagine a day without your beautiful smile.</p>
-        <p class="animated-text">Can you please forgive me?</p>
-        <button onclick="nextPage()">Make Me Happy</button>
-    </div>
 
-    <div id="page2" class="hidden">
-        <audio id="song" autoplay>
-            <source src="Zaroor.mp3" type="audio/mp3">
-        </audio>
-        <h2>Wait a moment... Something special is waiting for you!</h2>
-        <div id="imageContainer"></div>
-        <button onclick="finalPage()">Are you ready for the most special part? 💕</button>
-    </div>
+    <!-- Header Section -->
+    <header>
+        <h1>Dishaa & [Your Name]</h1>
+        <p>We Are Getting Married!</p>
+        <p><strong>Save The Date: [Wedding Date]</strong></p>
+    </header>
 
-    <div id="page3" class="hidden">
-        <h1 class="heart">❤️</h1>
-        <p>Do you love me?</p>
-        <button onclick="showLove(true)">Yes</button>
-        <button id="noButton" onclick="showLove(false)">No</button>
-        <p id="randomMessage"></p>
-    </div>
+    <!-- Countdown Timer -->
+    <section id="countdown">
+        <h2>Countdown to Our Big Day</h2>
+        <p id="timer"></p>
+    </section>
 
-    <div id="page4" class="hidden">
-        <h1 class="glowing-heart">❤️</h1>
-        <img src="img11.jpg" alt="Us Together">
-        <p>I love you so much, Dishaa. You are my forever.</p>
-    </div>
+    <!-- Our Story Section -->
+    <section id="story">
+        <h2>Our Love Story</h2>
+        <p>[A short sweet paragraph about your journey]</p>
+    </section>
 
-    <script>
-        let images = ['img9.jpg', 'im10.jpg', 'im12.jpg'];
-        let index = 0;
-        let noMessages = ["If you want to go further, you have to click yes!", "Accept my love to go further!", "You know deep down it's a YES!", "No is not an option, my love!"];
+    <!-- Event Details -->
+    <section id="event">
+        <h2>Wedding Details</h2>
+        <p><strong>Date:</strong> [Wedding Date]</p>
+        <p><strong>Venue:</strong> [Wedding Venue]</p>
+        <p><strong>Time:</strong> [Wedding Time]</p>
+    </section>
 
-        function nextPage() {
-            document.getElementById('page1').classList.add('hidden');
-            document.getElementById('page2').classList.remove('hidden');
-            document.getElementById('song').play();
-            displayImages();
-        }
+    <!-- Photo Gallery -->
+    <section id="gallery">
+        <h2>Our Memories</h2>
+        <img src="image1.jpg" alt="Couple Photo">
+        <img src="image2.jpg" alt="Engagement Photo">
+    </section>
 
-        function displayImages() {
-            let container = document.getElementById('imageContainer');
-            container.innerHTML = '';
-            if (index < images.length) {
-                let img = document.createElement('img');
-                img.src = images[index];
-                container.appendChild(img);
-                index++;
-                setTimeout(displayImages, 2000);
-            }
-        }
+    <!-- RSVP Section -->
+    <section id="rsvp">
+        <h2>RSVP</h2>
+        <form>
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <button type="submit">Confirm Attendance</button>
+        </form>
+    </section>
 
-        function finalPage() {
-            document.getElementById('page2').classList.add('hidden');
-            document.getElementById('page3').classList.remove('hidden');
-        }
-
-        function showLove(isYes) {
-            if (isYes) {
-                document.getElementById('page3').classList.add('hidden');
-                document.getElementById('page4').classList.remove('hidden');
-                document.getElementById('heartbeatSound').play();
-            } else {
-                let randomIndex = Math.floor(Math.random() * noMessages.length);
-                document.getElementById('randomMessage').innerText = noMessages[randomIndex];
-                let noButton = document.getElementById('noButton');
-                noButton.style.position = 'absolute';
-                noButton.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-                noButton.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-            }
-        }
-    </script>
-    
-    <audio id="heartbeatSound">
-        <source src="heartbeat.mp3" type="audio/mp3">
-    </audio>
+    <script src="script.js"></script> <!-- External JavaScript -->
 </body>
 </html>

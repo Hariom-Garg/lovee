@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #fce4ec;
+    color: #333;
+}
+header {
+    background: #ff4081;
+    color: white;
+    padding: 20px;
+}
+section {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+img {
+    width: 200px;
+    margin: 10px;
+    border-radius: 10px;
+}
+const weddingDate = new Date("[Wedding Date Here]").getTime();
+
+const countdown = setInterval(() => {
+    const now = new Date().getTime();
+    const timeLeft = weddingDate - now;
+    
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    
+    document.getElementById("timer").innerHTML = `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+    
+    if (timeLeft < 0) {
+        clearInterval(countdown);
+        document.getElementById("timer").innerHTML = "The Big Day is Here!";
+    }
+}, 1000);
